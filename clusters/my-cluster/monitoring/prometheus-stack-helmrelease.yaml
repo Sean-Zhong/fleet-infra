@@ -37,10 +37,13 @@ spec:
     # --- Prometheus Configuration ---
     prometheus:
       prometheusSpec:
-        securityContext:
-          fsGroup: 65534
-          runAsGroup: 65534
-          runAsUser: 65534
+        initContainers:
+          - name: init-chown-data
+            image: busybox:latest
+            command: ["/bin/sh", "-c", "chown -R 65534:65534 /prometheus"]
+            volumeMounts:
+              - name: data
+                mountPath: /prometheus
 
         storageSpec:
           volumeClaimTemplate:
