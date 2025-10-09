@@ -1,0 +1,9 @@
+# networking/traefik-repo.yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: traefik
+  namespace: networking
+spec:
+  interval: 24h
+  url: https://helm.traefik.io/traefik
