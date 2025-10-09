@@ -30,3 +30,6 @@ spec:
           name: unpoller-credentials
           userKey: UNPOLLER_UNIFI_USER
           passKey: UNPOLLER_UNIFI_PASS
+    prometheus:
+      podMonitor:
+        enabled: true
