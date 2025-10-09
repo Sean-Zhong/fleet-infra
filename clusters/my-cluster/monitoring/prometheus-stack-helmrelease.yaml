@@ -37,6 +37,11 @@ spec:
     # --- Prometheus Configuration ---
     prometheus:
       prometheusSpec:
+        securityContext:
+          fsGroup: 65534
+          runAsGroup: 65534
+          runAsUser: 65534
+
         storageSpec:
           volumeClaimTemplate:
             spec:
