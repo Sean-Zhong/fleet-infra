@@ -1,0 +1,32 @@
+# monitoring/unpoller-helmrelease.yaml
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: unpoller
+  namespace: monitoring
+spec:
+  interval: 15m
+  chart:
+    spec:
+      chart: unpoller
+      version: "v2.15.4"
+      sourceRef:
+        kind: HelmRepository
+        name: unpoller
+        namespace: monitoring
+      interval: 15m
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    remediation:
+      retries: 3
+  values:
+    unifi:
+      controller:
+        url: "https://router.seanzhong.com"
+      auth:
+        existingSecret:
+          name: unpoller-credentials
+          userKey: UNPOLLER_UNIFI_USER
+          passKey: UNPOLLER_UNIFI_PASS

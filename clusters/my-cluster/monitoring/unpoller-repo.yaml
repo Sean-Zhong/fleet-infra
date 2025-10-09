@@ -1,0 +1,9 @@
+# monitoring/unpoller-repo.yaml
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: unpoller
+  namespace: monitoring
+spec:
+  interval: 1h
+  url: https://unpoller.github.io/helm-charts
