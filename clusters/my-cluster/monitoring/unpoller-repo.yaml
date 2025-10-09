@@ -6,4 +6,4 @@ metadata:
   namespace: monitoring
 spec:
   interval: 1h
-  url: https://unpoller.github.io/helm-charts
+  url: https://unpoller.github.io/helm-chart
