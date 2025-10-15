@@ -1,0 +1,23 @@
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: metallb-install
+  namespace: flux-system
+spec:
+  interval: 10m
+  path: ./clusters/my-cluster/metallb
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+  postBuild:
+    substitute: {}
+    substituteFrom: []
+  patches: []
+  patchesStrategicMerge:
+  - apiVersion: kustomize.config.k8s.io/v1beta1
+    kind: Kustomization
+    resources:
+    - metallb-namespace.yaml
+    - metallb-repo.yaml
+    - metallb-release.yaml
