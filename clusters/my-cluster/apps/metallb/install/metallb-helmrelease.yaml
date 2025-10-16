@@ -23,3 +23,37 @@ spec:
       - key: "node-role.kubernetes.io/master"
         operator: "Exists"
         effect: "NoSchedule"
+
+    extraObjects:
+      - apiVersion: v1
+        kind: Service
+        metadata:
+          name: metallb-speaker
+          namespace: metallb-system
+        spec:
+          selector:
+            app.kubernetes.io/component: speaker
+            app.kubernetes.io/instance: metallb
+            app.kubernetes.io/name: metallb
+          ports:
+            - name: memberlist
+              port: 7946
+              protocol: TCP
+              targetPort: 7946
+      - apiVersion: networking.k8s.io/v1
+        kind: NetworkPolicy
+        metadata:
+          name: allow-metallb-speaker
+          namespace: metallb-system
+        spec:
+          podSelector:
+            matchLabels:
+              app.kubernetes.io/component: speaker
+          ingress:
+            - from:
+                - podSelector:
+                    matchLabels:
+                      app.kubernetes.io/component: speaker
+              ports:
+                - port: 7946
+                  protocol: TCP
