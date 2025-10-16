@@ -7,7 +7,7 @@ spec:
   dependsOn:
     - name: metallb-install
   interval: 10m
-  path: ./clusters/my-cluster/metallb/config
+  path: ./clusters/my-cluster/apps/metallb/config
   prune: true
   sourceRef:
     kind: GitRepository
