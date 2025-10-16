@@ -24,8 +24,7 @@ spec:
       loadBalancerIP: 192.168.111.250
       annotations:
         metallb.universe.tf/allow-shared-ip: pihole-svc
-      spec:
-        externalTrafficPolicy: Cluster
+      externalTrafficPolicy: Cluster
 
     serviceDns:
       type: LoadBalancer
