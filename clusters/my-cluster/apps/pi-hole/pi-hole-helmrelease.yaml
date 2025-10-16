@@ -15,10 +15,6 @@ spec:
         namespace: flux-system
       interval: 15m
 
-  dependsOn:
-    - name: metallb-config
-      namespace: flux-system
-
   values:
     persistentVolumeClaim:
       enabled: true
