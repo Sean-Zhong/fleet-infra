@@ -4,6 +4,6 @@ resources:
   - ./install.yaml
   - namespace.yaml
   - kube-vip-repo.yaml
-  - kube-vip-hemlrelease.yaml
+  - kube-vip-helmrelease.yaml
   - traefik-repo.yaml
   - traefik-helmrelease.yaml
