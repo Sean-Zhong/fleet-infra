@@ -22,11 +22,14 @@ spec:
     serviceWeb:
       type: LoadBalancer
       loadBalancerIP: 192.168.111.250
+      externalTrafficPolicy: Local
 
     serviceDnsTcp:
       type: LoadBalancer
       loadBalancerIP: 192.168.111.250
+      externalTrafficPolicy: Local
 
     serviceDnsUdp:
       type: LoadBalancer
       loadBalancerIP: 192.168.111.250
+      externalTrafficPolicy: Local
