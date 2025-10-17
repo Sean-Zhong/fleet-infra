@@ -22,14 +22,11 @@ spec:
     serviceWeb:
       type: LoadBalancer
       loadBalancerIP: 192.168.111.250
-      externalTrafficPolicy: Cluster
 
     serviceDnsTcp:
       type: LoadBalancer
       loadBalancerIP: 192.168.111.250
-      externalTrafficPolicy: Cluster
 
     serviceDnsUdp:
       type: LoadBalancer
       loadBalancerIP: 192.168.111.250
-      externalTrafficPolicy: Cluster
