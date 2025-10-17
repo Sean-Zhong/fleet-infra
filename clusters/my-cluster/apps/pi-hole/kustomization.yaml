@@ -3,5 +3,6 @@ kind: Kustomization
 resources:
   - ./install.yaml
   - namespace.yaml
+  - pi-hole-netpol.yaml
   - pi-hole-repo.yaml
   - pi-hole-helmrelease.yaml
