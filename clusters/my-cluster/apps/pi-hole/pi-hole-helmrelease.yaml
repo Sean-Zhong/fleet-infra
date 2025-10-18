@@ -20,16 +20,13 @@ spec:
       enabled: true
 
     serviceWeb:
-      type: LoadBalancer
       loadBalancerIP: 192.168.111.250
-      externalTrafficPolicy: Local
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
+      type: LoadBalancer
 
-    serviceDnsTcp:
-      type: LoadBalancer
+    serviceDns:
       loadBalancerIP: 192.168.111.250
-      externalTrafficPolicy: Local
-
-    serviceDnsUdp:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: pihole-svc
       type: LoadBalancer
-      loadBalancerIP: 192.168.111.250
-      externalTrafficPolicy: Local
