@@ -28,16 +28,12 @@ spec:
     
     env:
       svc_enable: "true"
-      
       cp_enable: "false"
-
       vip_interface: "eth0"
-      
       vip_leaderelection: "true"
-
       vip_address: "192.168.111.20"
-
       ipam_range: "192.168.111.240-192.168.111.250"
+      lb_loadbalancerclassname: "kube-vip"
 
     tolerations:
       - key: "node-role.kubernetes.io/control-plane"
