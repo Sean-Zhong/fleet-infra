@@ -25,20 +25,19 @@ spec:
         namespace: flux-system
   values:
     installAsDaemonset: true
+    
+    env:
+      svc_enable: "true"
+      
+      cp_enable: "false"
 
-    config:
-      interface: eth0
-      leaderElection: true
-      enableControlPlane: false
-      enableServices: true
-      address: 192.168.111.20
+      vip_interface: "eth0"
+      
+      vip_leaderelection: "true"
 
-    services:
-      enabled: true
-      loadBalancerIPPool:
-        enabled: true
-        ipam:
-          range: 192.168.111.240-192.168.111.250
+      vip_address: "192.168.111.20"
+
+      ipam_range: "192.168.111.240-192.168.111.250"
 
     tolerations:
       - key: "node-role.kubernetes.io/control-plane"
