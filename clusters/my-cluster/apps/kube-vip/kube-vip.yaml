@@ -25,7 +25,7 @@ spec:
         namespace: flux-system
   values:
     env:
-      vip_interface: ""
+      vip_interface: "eth0"
       vip_arp: "true"
       lb_enable: "true"
       lb_port: "6443"
