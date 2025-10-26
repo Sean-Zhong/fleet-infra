@@ -24,13 +24,15 @@ spec:
         name: kube-vip
         namespace: flux-system
   values:
-    config:
-      enableLoadBalancer: true
-      interface: "eth0"
-      range-global: "192.168.111.240-192.168.111.250"
-
-    loadBalancer:
-      class: ""
+    env:
+      vip_interface: ""
+      vip_arp: "true"
+      lb_enable: "true"
+      lb_port: "6443"
+      vip_subnet: "32"
+      cp_enable: "false"
+      svc_enable: "true"
+      svc_election: "false"
 
     service:
       enabled: true
