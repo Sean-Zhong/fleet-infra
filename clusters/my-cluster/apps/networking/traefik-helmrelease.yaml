@@ -9,7 +9,7 @@ spec:
   chart:
     spec:
       chart: traefik
-      version: "27.0.2"
+      version: "37.2.0"
       sourceRef:
         kind: HelmRepository
         name: traefik
@@ -17,19 +17,28 @@ spec:
   values:
     service:
       type: LoadBalancer
+      spec:
+        loadBalancerIp: "192.168.111.250"
 
-    # This enables the Traefik dashboard
-    dashboard:
-      enabled: true
-      ingressRoute: true
+    ports:
+      web:
+        redirections:
+          entryPoint:
+            to: websecure
+            scheme: https
+            permanent: true
+
+    ingressClass:
+      name: traefik
+    providers:
+      kubernetesCRD:
+        ingressClass: traefik
+      kubernetesIngress:
+        ingressClass: traefik
 
     ingressRoutes:
-      - name: traefik-dashboard
-        entryPoints:
-          - web
-        routes:
-          - match: Host(`traefik.seanzhong.com`)
-            kind: Rule
-            services:
-              - name: api@internal
-                kind: TraefikService
+      dashboard:
+        enabled: false
+
+    rbac:
+      namespaced: true
