@@ -4,7 +4,6 @@ resources:
   - ./install.yaml
   - namespace.yaml
   - traefik-repo.yaml
-  - traefik-helmrelease.yaml
   - traefik-dashboard-secret.yaml
   - middleware.yaml
-  - ingress.yaml
+  - traefik-helmrelease.yaml

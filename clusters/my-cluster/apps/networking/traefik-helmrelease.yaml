@@ -36,9 +36,13 @@ spec:
       kubernetesIngress:
         ingressClass: traefik
 
-    ingressRoutes:
-      dashboard:
-        enabled: false
-
     rbac:
       namespaced: true
+
+    ingressRoute:
+      dashboard:
+        enabled: true
+        matchRule: Host(`traefik.seanzhong.com`)
+        entryPoints: ["websecure"]
+        middlewares:
+          - name: traefik-dashboard-auth
