@@ -6,3 +6,4 @@ resources:
   - networking
   - cert-manager
   - monitoring
+  - portainer
