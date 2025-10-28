@@ -6,4 +6,4 @@ metadata:
   namespace: flux-system
 spec:
   interval: 1h
-  url: https://portainer.github.io/portainer-helm/
+  url: https://portainer.github.io/k8s/
