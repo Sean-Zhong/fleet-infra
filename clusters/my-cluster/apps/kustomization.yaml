@@ -4,4 +4,5 @@ resources:
   - longhorn-system
   - kube-vip
   - networking
+  - cert-manager
   - monitoring
