@@ -15,6 +15,10 @@ spec:
         name: traefik
         namespace: networking
   values:
+    podSecurityContext:
+      seccompProfile:
+        type: RuntimeDefault
+
     service:
       type: LoadBalancer
       spec:
@@ -37,7 +41,7 @@ spec:
         ingressClass: traefik
 
     rbac:
-      namespaced: true
+      namespaced: false
 
     ingressRoute:
       dashboard:
