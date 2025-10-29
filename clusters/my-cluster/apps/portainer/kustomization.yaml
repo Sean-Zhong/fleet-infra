@@ -5,3 +5,4 @@ resources:
   - portainer-certificate.yaml
   - portainer-repo.yaml
   - portainer-helmrelease.yaml
+  - portainer-ingressroute.yaml
