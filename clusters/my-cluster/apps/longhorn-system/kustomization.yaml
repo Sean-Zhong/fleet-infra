@@ -6,3 +6,4 @@ resources:
   - longhorn-certificate.yaml
   - longhorn-repo.yaml
   - longhorn-helmrelease.yaml
+  - longhorn-ingressroute.yaml
