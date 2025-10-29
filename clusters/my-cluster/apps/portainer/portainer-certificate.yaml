@@ -6,7 +6,7 @@ metadata:
 spec:
   secretName: portainer-certificate-secret
   issuerRef:
-    name: letsencrypt-staging
+    name: letsencrypt
     kind: ClusterIssuer
   dnsNames:
   - portainer.seanzhong.com

@@ -6,4 +6,4 @@ resources:
 - secret-cf-token.yaml
 - cert-manager-repo.yaml
 - cert-manager-helmrelease.yaml
-- letsencrypt-staging.yaml
+- letsencrypt.yaml
