@@ -43,7 +43,7 @@ spec:
         ingressClass: traefik
 
     rbac:
-      namespaced: false
+      namespaced: true
 
     ingressRoute:
       dashboard:
