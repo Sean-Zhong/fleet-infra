@@ -5,6 +5,7 @@ metadata:
   name: portainer
   namespace: portainer
 spec:
+  ingressClassName: traefik
   entryPoints:
     - websecure
   routes:
