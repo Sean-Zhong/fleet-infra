@@ -46,7 +46,8 @@ spec:
     ingressRoute:
       dashboard:
         enabled: true
-        ingressClassName: traefik
+        annotations:
+          kubernetes.io/ingress.class: traefik
         matchRule: Host(`traefik.seanzhong.com`)
         entryPoints: ["websecure"]
         middlewares:

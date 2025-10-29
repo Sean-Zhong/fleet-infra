@@ -4,8 +4,9 @@ kind: IngressRoute
 metadata:
   name: portainer
   namespace: portainer
+  annotations:
+    kubernetes.io/ingress.class: traefik
 spec:
-  ingressClassName: traefik
   entryPoints:
     - websecure
   routes:
