@@ -1,0 +1,13 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: grafana-certificate
+  namespace: monitoring
+spec:
+  secretName: grafana-tls-secret
+  dnsNames:
+    - "grafana.seanzhong.com"
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
