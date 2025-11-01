@@ -8,5 +8,5 @@ resources:
   - prometheus-repo.yaml
   - unpoller-secret.yaml
   - unpoller-repo.yaml
-  - promethues-stack-helmrelease.yaml
+  - prometheus-stack-helmrelease.yaml
   - unpoller-helmrelease.yaml
