@@ -27,12 +27,10 @@ spec:
         enabled: true
         type: pvc
         size: 20Gi
-        storageClassName: "local-path"
+        storageClassName: "longhorn"
 
-      # Expose Grafana on a NodePort so you can access it from your LAN
       service:
-        type: NodePort
-        nodePort: 30100 # You can change this port
+        type: ClusterIP
 
     # --- Prometheus Configuration ---
     prometheus:
@@ -48,7 +46,7 @@ spec:
         storageSpec:
           volumeClaimTemplate:
             spec:
-              storageClassName: "local-path"
+              storageClassName: "longhorn"
               resources:
                 requests:
-                  storage: 50Gi
+                  storage: 40Gi
