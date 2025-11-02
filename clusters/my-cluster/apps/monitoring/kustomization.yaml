@@ -4,10 +4,10 @@ resources:
   - namespace.yaml
   - ./install.yaml
   - grafana-certificate.yaml
-    grafana-ingressroute.yaml
   - grafana-admin-secret.yaml
   - prometheus-repo.yaml
   - unpoller-secret.yaml
   - unpoller-repo.yaml
   - prometheus-stack-helmrelease.yaml
   - unpoller-helmrelease.yaml
+  - grafana-ingressroute.yaml
