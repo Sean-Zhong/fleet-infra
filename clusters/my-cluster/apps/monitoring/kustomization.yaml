@@ -5,7 +5,7 @@ resources:
   - install.yaml
   - grafana-certificate.yaml
   - grafana-admin-secret.yaml
-  - ha-token-secret.yaml
+  - home-assistant-token.yaml
   - prometheus-repo.yaml
   - unpoller-secret.yaml
   - unpoller-repo.yaml

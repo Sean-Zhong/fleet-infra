@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Secret
+metadata:
+    name: home-assistant-token
+    namespace: monitoring
+stringData:
+    token: ENC[AES256_GCM,data:xbaU22hFw4JI+T5cbA0NEG9vz883xC/2Uoy4DHMGuzs8/ZGFn+E+wmBbVeSC+C07Z554ragHjxDioPxbuBpfCcMPGoOuAFOlg+a9eYU5JHSAALyGG7uIuxa/fkSa6xkKyiqckc7bhJ6raObXZIA5EQuatRPo2DJIwjovyF+RraFRDkVj1uVrjJ6kZfPZORiSy1SZv1wK0KTy+uRBvRYQSsBlY+Wu+EubEsFfaahKqW4GChFQ2isL,iv:aCuo3Q4ppLl18gXbBMMq+zoUe2ZOHXttq9cqVfkKALM=,tag:L2wq9wUmJq0wlR0j51Q46g==,type:str]
+sops:
+    age:
+        - recipient: age1vtxcsnvdcj33tk2r8u6m7j947fv5m4gvmyw538ve873km84gf5vql65e6d
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSA3Q1lwc3RvbDdJcURiV2t1
+            RXVPK0d6dGs4dDF4M2l6RDQrTU94eUhORkZZCnVKQXBFTW5YQlI3TFdXK3llK3RI
+            clFOa0cxNytVb2gzcmY3QWwrK3N2UjAKLS0tIHJpMDdFdjAvUjFYVGNPNVMyU2FI
+            djRGL3VQUkU1ZUF6OWY2WGNWSlFpcEEKMFA3g/kfCsJqSIVxE8lx6VTIUCl9KHxs
+            WihgTqf1rQ3+ST85OQVJ9nUEflzvd4NcAZgqlRF4HSxuzuKwRVVU3Q==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-11-12T22:20:15Z"
+    mac: ENC[AES256_GCM,data:z4fTtrLTDVQ4dcLGaQhdyOYP/NUNQU67/WdKFIBZZVmM5dV/ab3ldUIUOXsmNSFEdNAvSMl3Vp0q2gQ+V2h7lysn2SgJZltX/VzgcR5CYzC3wwosR54NQhgKUSfheixazliE1DDB8VVmeNrGx+odxM+/b1SPLHpOmKrTEGUbKUM=,iv:cXpbkJaRCtJe2q0YgpTwVxL8rIUoUhRr7OVnrAGUatw=,tag:bJ1FZsdk3mRQFJdHF/HpXg==,type:str]
+    encrypted_regex: ^(data|stringData)$
+    version: 3.11.0
