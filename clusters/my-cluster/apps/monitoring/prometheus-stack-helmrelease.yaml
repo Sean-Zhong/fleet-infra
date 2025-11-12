@@ -42,3 +42,19 @@ spec:
               resources:
                 requests:
                   storage: 40Gi
+
+        secrets:
+          - home-assistant-token
+
+        volumeMounts:
+          - name: secret-home-assistant-token
+            mountPath: /etc/prometheus/secrets/ha-token
+            readOnly: true
+
+        additionalScrapeConfigs: |
+          - job_name: "home-assistant"
+            metrics_path: /api/prometheus
+            bearer_token_file: /etc/prometheus/secrets/ha-token/token
+            scheme: https
+            static_configs:
+              - targets: ["ha.seanzhong.com"]
