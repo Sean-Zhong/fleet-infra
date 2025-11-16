@@ -13,7 +13,7 @@ spec:
     - match: Host(`pdf.seanzhong.com`)
       kind: Rule
       services:
-        - name: stirling-pdf
+        - name: stirling-pdf-stirling-pdf-chart
           port: 8080
   tls:
     secretName: stirling-pdf-certificate-secret
