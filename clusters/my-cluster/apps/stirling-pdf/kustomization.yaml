@@ -3,3 +3,6 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - stirling-pdf-certificate.yaml
+  - stirling-pdf-repo.yaml
+  - stirling-pdf-ingressroute.yaml
+  - stirling-pdf-helmrelease.yaml
