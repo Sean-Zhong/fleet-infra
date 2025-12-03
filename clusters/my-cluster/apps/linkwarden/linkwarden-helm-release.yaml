@@ -1,0 +1,51 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: linkwarden
+  namespace: linkwarden
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: linkwarden
+      version: "0.3.3"
+      sourceRef:
+        kind: HelmRepository
+        name: fmjstudios
+        namespace: flux-system
+  values:
+    # 1. Environment Configuration
+    env:
+      NEXTAUTH_SECRET:
+        valueFrom:
+          secretKeyRef:
+            name: linkwarden-secrets
+            key: NEXTAUTH_SECRET
+      NEXTAUTH_URL: "https://links.seanzhong.com"
+
+    persistence:
+      enabled: true
+      storageClass: "longhorn"
+      size: 10Gi
+      accessMode: ReadWriteOnce
+
+    # 3. PostgreSQL Database Configuration
+    postgresql:
+      enabled: true
+      auth:
+        username: linkwarden
+        database: linkwarden
+        existingSecret: "linkwarden-secrets"
+        secretKeys:
+          adminPasswordKey: "POSTGRES_PASSWORD"
+          userPasswordKey: "POSTGRES_PASSWORD"
+      primary:
+        persistence:
+          enabled: true
+          storageClass: "longhorn"
+          size: 8Gi
+        podSecurityContext:
+          fsGroup: 1001
+        containerSecurityContext:
+          runAsUser: 1001
+

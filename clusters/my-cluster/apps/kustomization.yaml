@@ -8,3 +8,4 @@ resources:
   - monitoring
   - portainer
   - stirling-pdf
+  - linkwarden
