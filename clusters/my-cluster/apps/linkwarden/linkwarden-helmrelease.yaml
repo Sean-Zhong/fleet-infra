@@ -25,7 +25,6 @@ spec:
 
     persistence:
       enabled: true
-      storageClass: "longhorn"
       size: 10Gi
       accessMode: ReadWriteOnce
 
@@ -42,7 +41,6 @@ spec:
       primary:
         persistence:
           enabled: true
-          storageClass: "longhorn"
           size: 8Gi
         podSecurityContext:
           fsGroup: 1001
