@@ -5,4 +5,3 @@ resources:
   - linkwarden-repo.yaml
   - linkwarden-secret.yaml
   - linkwarden-helmrelease.yaml
-  - linkwarden-ingressroute.yaml
