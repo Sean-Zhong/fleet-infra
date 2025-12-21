@@ -22,11 +22,8 @@ spec:
     remediation:
       retries: 3
   values:
-    grafana:
-      enabled: false
+    dashboards:
       create: false
-      dashboards:
-        enabled: false
     unifi:
       controller:
         url: "https://router.seanzhong.com"
