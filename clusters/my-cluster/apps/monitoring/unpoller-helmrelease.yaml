@@ -21,6 +21,16 @@ spec:
   upgrade:
     remediation:
       retries: 3
+  postRenderers:
+    - kustomize:
+        patches:
+          - target:
+              kind: PodMonitor
+              name: unifi-poller
+            patch: |
+              - op: add
+                path: /metadata/labels/release
+                value: prometheus-stack
   values:
     dashboards:
       create: false
@@ -37,7 +47,5 @@ spec:
     prometheus:
       podMonitor:
         enabled: true
-        labels:
-          release: prometheus-stack
-        additionalLabels:
-          release: prometheus-stack
+        endpoint:
+          port: 9130
