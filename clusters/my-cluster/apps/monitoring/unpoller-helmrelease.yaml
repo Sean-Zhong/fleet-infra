@@ -24,6 +24,9 @@ spec:
   values:
     grafana:
       enabled: false
+      create: false
+      dashboards:
+        enabled: false
     unifi:
       controller:
         url: "https://router.seanzhong.com"
