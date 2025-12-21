@@ -38,4 +38,4 @@ spec:
       podMonitor:
         enabled: true
         labels:
-          release: kube-prometheus-stack
+          release: prometheus-stack
