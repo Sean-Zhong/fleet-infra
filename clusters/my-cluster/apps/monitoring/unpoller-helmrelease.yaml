@@ -49,3 +49,6 @@ spec:
         enabled: true
         endpoint:
           port: 9130
+          scheme: http
+          path: /metrics
+          interval: 1m
