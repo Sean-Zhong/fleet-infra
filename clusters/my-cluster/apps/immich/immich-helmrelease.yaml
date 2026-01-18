@@ -24,28 +24,28 @@ spec:
 
     valkey:
       enabled: false
+    postgresql:
+      enabled: false
 
-    env:
-      REDIS_HOSTNAME: immich-redis-master
-      DB_HOSTNAME: immich-db-rw
-      
-      DB_URL: "postgresql://immich:$(DB_PASSWORD)@immich-db-rw:5432/immich"
-      REDIS_URL: "ioredis://immich-redis-master:6379"
+    server:
+      env:
+        DB_URL: "postgresql://immich:$(DB_PASSWORD)@database:5432/immich"
+        REDIS_URL: "ioredis://immich-valkey:6379"
+      envFrom:
+        - secretRef:
+            name: immich-db-app
 
-      DB_DATABASE_NAME: immich
-      DB_USERNAME:
-        valueFrom:
-          secretKeyRef:
+    microservices:
+      env:
+        DB_URL: "postgresql://immich:$(DB_PASSWORD)@database:5432/immich"
+        REDIS_URL: "ioredis://immich-valkey:6379"
+      envFrom:
+        - secretRef:
             name: immich-db-app
-            key: username
-      DB_PASSWORD:
-        valueFrom:
-          secretKeyRef:
-            name: immich-db-app
-            key: password
 
     immich:
       persistence:
         library:
           enabled: true
           existingClaim: immich-library-pvc
+    
