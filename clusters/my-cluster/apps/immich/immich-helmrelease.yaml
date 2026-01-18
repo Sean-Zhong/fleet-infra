@@ -25,9 +25,6 @@ spec:
     podAnnotations:
       config/force-restart: "final-fix-v2"
 
-    postgresql:
-      enabled: false
-    
     externalDatabase:
       enabled: true
       host: "database"
