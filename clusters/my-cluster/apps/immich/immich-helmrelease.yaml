@@ -22,31 +22,24 @@ spec:
     image:
       tag: v2.0.0
 
-
     valkey:
       enabled: false
     postgresql:
       enabled: false
 
     env:
-      DB_HOSTNAME: "database"
-      DB_PORT: "5432"
-      DB_DATABASE_NAME: "immich"
-      
-      DB_USERNAME:
-        valueFrom:
-          secretKeyRef:
-            name: immich-db-app
-            key: username
+      DB_URL: "postgresql://immich@database:5432/immich"
+
+      REDIS_URL: "ioredis://immich-valkey:6379"
+
       DB_PASSWORD:
         valueFrom:
           secretKeyRef:
             name: immich-db-app
             key: password
-
-      REDIS_HOSTNAME: "immich-valkey"
-      REDIS_PORT: "6379"
-      REDIS_DBINDEX: "0"
+      
+      DB_USERNAME: "immich"
+      DB_DATABASE_NAME: "immich"
 
     immich:
       persistence:
