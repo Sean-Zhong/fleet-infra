@@ -17,7 +17,7 @@ spec:
     secretRef:
       name: sops-age
 
-healthChecks:
+  healthChecks:
     - apiVersion: apps/v1
       kind: Deployment
       name: cnpg-cloudnative-pg
