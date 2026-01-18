@@ -19,12 +19,13 @@ spec:
     - name: immich-redis
       namespace: immich
   values:
+    # --- TRACER BULLET ---
+    # We change the tag to FORCE the pod to update.
+    # If the pod doesn't try to pull this image, Flux is not reading this file.
     image:
-      tag: v2.0.0
+      tag: v2.0.0-force-update
 
-    podAnnotations:
-      config/force-restart: "final-fix-v2"
-
+    # --- External Database (Standard) ---
     externalDatabase:
       enabled: true
       host: "database"
@@ -33,43 +34,43 @@ spec:
       database: "immich"
       port: 5432
 
-    valkey:
-      enabled: false
-
-    env:
-      DB_URL: "postgresql://immich:immich@database:5432/immich"
-      DB_HOSTNAME: "database"
-      DB_USERNAME: "immich"
-      DB_PASSWORD: "immich"
-      DB_DATABASE_NAME: "immich"
-      REDIS_URL: "ioredis://immich-valkey:6379"
-      REDIS_HOSTNAME: "immich-valkey"
-
+    # --- Explicit Env Vars (List Format) ---
+    # We force these into the server container.
     server:
       env:
         - name: DB_URL
           value: "postgresql://immich:immich@database:5432/immich"
+        - name: DB_HOSTNAME
+          value: "database"
         - name: DB_USERNAME
           value: "immich"
         - name: DB_PASSWORD
           value: "immich"
         - name: REDIS_HOSTNAME
           value: "immich-valkey"
+        - name: FORCE_UPDATE_CHECK
+          value: "true"
 
     microservices:
       env:
         - name: DB_URL
           value: "postgresql://immich:immich@database:5432/immich"
+        - name: DB_HOSTNAME
+          value: "database"
         - name: DB_USERNAME
           value: "immich"
         - name: DB_PASSWORD
           value: "immich"
         - name: REDIS_HOSTNAME
           value: "immich-valkey"
+
+    valkey:
+      enabled: false
 
     immich:
       persistence:
         library:
           enabled: true
           existingClaim: immich-library-pvc
+    
 
