@@ -22,14 +22,16 @@ spec:
     image:
       tag: v2.0.0
 
+
     valkey:
       enabled: false
     postgresql:
       enabled: false
 
     env:
-      
-      DB_DATABASE_NAME: immich
+      DB_HOSTNAME: "database"
+      DB_PORT: "5432"
+      DB_DATABASE_NAME: "immich"
       
       DB_USERNAME:
         valueFrom:
@@ -42,11 +44,12 @@ spec:
             name: immich-db-app
             key: password
 
+      REDIS_HOSTNAME: "immich-valkey"
       REDIS_PORT: "6379"
+      REDIS_DBINDEX: "0"
 
     immich:
       persistence:
         library:
           enabled: true
           existingClaim: immich-library-pvc
-    
