@@ -22,24 +22,57 @@ spec:
     image:
       tag: v2.0.0
 
+    podAnnotations:
+      config/force-restart: "final-fix-v2"
+
+    postgresql:
+      enabled: false
+    
+    externalDatabase:
+      enabled: true
+      host: "database"
+      user: "immich"
+      password: "immich"
+      database: "immich"
+      port: 5432
+
+    valkey:
+      enabled: false
+
     env:
       DB_URL: "postgresql://immich:immich@database:5432/immich"
-      REDIS_URL: "ioredis://immich-valkey:6379"
-
       DB_HOSTNAME: "database"
       DB_USERNAME: "immich"
       DB_PASSWORD: "immich"
       DB_DATABASE_NAME: "immich"
+      REDIS_URL: "ioredis://immich-valkey:6379"
       REDIS_HOSTNAME: "immich-valkey"
 
-    podAnnotations:
-      config/force-restart: "attempt-global-fix"
+    server:
+      env:
+        - name: DB_URL
+          value: "postgresql://immich:immich@database:5432/immich"
+        - name: DB_USERNAME
+          value: "immich"
+        - name: DB_PASSWORD
+          value: "immich"
+        - name: REDIS_HOSTNAME
+          value: "immich-valkey"
 
-    valkey:
-      enabled: false
+    microservices:
+      env:
+        - name: DB_URL
+          value: "postgresql://immich:immich@database:5432/immich"
+        - name: DB_USERNAME
+          value: "immich"
+        - name: DB_PASSWORD
+          value: "immich"
+        - name: REDIS_HOSTNAME
+          value: "immich-valkey"
 
     immich:
       persistence:
         library:
           enabled: true
           existingClaim: immich-library-pvc
+
