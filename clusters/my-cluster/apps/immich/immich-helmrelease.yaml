@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: immich
-      version: "0.10.3"
+      version: "0.10.x"
       sourceRef:
         kind: HelmRepository
         name: immich
@@ -19,13 +19,11 @@ spec:
     - name: immich-redis
       namespace: immich
   values:
-    # --- TRACER BULLET ---
-    # We change the tag to FORCE the pod to update.
-    # If the pod doesn't try to pull this image, Flux is not reading this file.
+    # 1. Real Image Tag
     image:
-      tag: v2.0.0-force-update
+      tag: v2.0.0
 
-    # --- External Database (Standard) ---
+    # 2. External DB (No 'postgresql' block!)
     externalDatabase:
       enabled: true
       host: "database"
@@ -34,35 +32,15 @@ spec:
       database: "immich"
       port: 5432
 
-    # --- Explicit Env Vars (List Format) ---
-    # We force these into the server container.
-    server:
-      env:
-        - name: DB_URL
-          value: "postgresql://immich:immich@database:5432/immich"
-        - name: DB_HOSTNAME
-          value: "database"
-        - name: DB_USERNAME
-          value: "immich"
-        - name: DB_PASSWORD
-          value: "immich"
-        - name: REDIS_HOSTNAME
-          value: "immich-valkey"
-        - name: FORCE_UPDATE_CHECK
-          value: "true"
-
-    microservices:
-      env:
-        - name: DB_URL
-          value: "postgresql://immich:immich@database:5432/immich"
-        - name: DB_HOSTNAME
-          value: "database"
-        - name: DB_USERNAME
-          value: "immich"
-        - name: DB_PASSWORD
-          value: "immich"
-        - name: REDIS_HOSTNAME
-          value: "immich-valkey"
+    # 3. Global Env (The Fix)
+    env:
+      DB_URL: "postgresql://immich:immich@database:5432/immich"
+      REDIS_URL: "ioredis://immich-valkey:6379"
+      DB_HOSTNAME: "database"
+      DB_USERNAME: "immich"
+      DB_PASSWORD: "immich"
+      DB_DATABASE_NAME: "immich"
+      REDIS_HOSTNAME: "immich-valkey"
 
     valkey:
       enabled: false
@@ -73,4 +51,3 @@ spec:
           enabled: true
           existingClaim: immich-library-pvc
     
-
