@@ -20,9 +20,6 @@ spec:
     image:
       tag: v1.124.0
 
-    postgresql:
-      enabled: false
-
     env:
       DB_HOSTNAME: immich-db-rw
       DB_DATABASE_NAME: immich
