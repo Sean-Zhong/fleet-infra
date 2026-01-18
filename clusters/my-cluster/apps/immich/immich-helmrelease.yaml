@@ -20,24 +20,24 @@ spec:
       namespace: immich
   values:
     image:
-      tag: v1.124.0
+      tag: v2.0.0
 
-    env:
-      DB_HOSTNAME: immich-db-rw
-      DB_DATABASE_NAME: immich
-      DB_USERNAME:
-        valueFrom:
-          secretKeyRef:
+    server:
+      env:
+        DB_URL: "postgresql://immich:$(DB_PASSWORD)@immich-db-rw:5432/immich"
+        REDIS_URL: "ioredis://immich-redis-master:6379"
+      
+      envFrom:
+        - secretRef:
             name: immich-db-app
-            key: username
-      DB_PASSWORD:
-        valueFrom:
-          secretKeyRef:
-            name: immich-db-app
-            key: password
 
-      REDIS_HOSTNAME: immich-redis-master
-      REDIS_PORT: "6379"
+    microservices:
+      env:
+        DB_URL: "postgresql://immich:$(DB_PASSWORD)@immich-db-rw:5432/immich"
+        REDIS_URL: "ioredis://immich-redis-master:6379"
+      envFrom:
+        - secretRef:
+            name: immich-db-app
 
     immich:
       persistence:
@@ -45,5 +45,3 @@ spec:
           enabled: true
           existingClaim: immich-library-pvc
 
-    machine-learning:
-      enabled: false
