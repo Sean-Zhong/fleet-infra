@@ -28,17 +28,15 @@ spec:
       enabled: false
 
     env:
-      DB_URL: "postgresql://immich@database:5432/immich"
+      DB_URL:
+        valueFrom:
+          secretKeyRef:
+            name: immich-connection
+            key: DB_URL
 
       REDIS_URL: "ioredis://immich-valkey:6379"
 
-      DB_PASSWORD:
-        valueFrom:
-          secretKeyRef:
-            name: immich-db-app
-            key: password
-      
-      DB_USERNAME: "immich"
+      DB_HOSTNAME: "database"
       DB_DATABASE_NAME: "immich"
 
     immich:
@@ -46,3 +44,4 @@ spec:
         library:
           enabled: true
           existingClaim: immich-library-pvc
+
