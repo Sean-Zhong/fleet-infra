@@ -4,21 +4,23 @@ metadata:
   name: immich-db
   namespace: immich
 spec:
-  instances: 2
-
+  instances: 1
   imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16-v0.3.0
   
   storage:
     size: 20Gi
     storageClass: longhorn
-  
+
   postgresql:
+    shared_preload_libraries:
+      - "vectors.so"
+    
     parameters:
-      shared_preload_libraries: "vectors.so"
       search_path: '"$user", public, vectors'
 
   bootstrap:
     initdb:
       database: immich
       owner: immich
-
+      postInitSQL:
+        - CREATE EXTENSION IF NOT EXISTS "vectors";
