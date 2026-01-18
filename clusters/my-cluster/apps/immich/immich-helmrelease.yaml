@@ -16,6 +16,8 @@ spec:
   dependsOn:
     - name: cnpg
       namespace: cnpg-system
+    - name: immich-redis
+      namespace: immich
   values:
     image:
       tag: v1.124.0
@@ -34,20 +36,14 @@ spec:
             name: immich-db-app
             key: password
 
+      REDIS_HOSTNAME: immich-redis-master
+      REDIS_PORT: "6379"
+
     immich:
       persistence:
         library:
           enabled: true
           existingClaim: immich-library-pvc
-
-    redis:
-      enabled: true
-      architecture: standalone
-      master:
-        persistence:
-          enabled: true
-          size: 8Gi
-          storageClass: longhorn
 
     machine-learning:
       enabled: false

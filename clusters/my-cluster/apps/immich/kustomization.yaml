@@ -4,5 +4,6 @@ resources:
   - namespace.yaml
   - immich-storage.yaml
   - immich-db.yaml
+  - immich-redis.yaml
   - immich-repo.yaml
   - immich-helmrelease.yaml
