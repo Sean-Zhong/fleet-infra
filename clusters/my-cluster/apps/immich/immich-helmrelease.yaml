@@ -27,13 +27,13 @@ spec:
         containers:
           main:
             env:
-              REDIS_URL: "redis://immich-valkey:6379"
-              DB_URL: "postgresql://immich:immich@database:5432/immich"
-              DB_HOSTNAME: "database"
-              DB_USERNAME: "immich"
-              DB_PASSWORD: "immich"
-              DB_DATABASE_NAME: "immich"
-              REDIS_HOSTNAME: "immich-valkey"
+              - name: REDIS_URL
+                value: "redis://immich-valkey:6379"
+              - name: DB_URL
+                valueFrom:
+                  secretKeyRef:
+                    name: immich-db-app
+                    key: uri
 
     valkey:
       enabled: false
@@ -43,4 +43,4 @@ spec:
         library:
           enabled: true
           existingClaim: immich-library-pvc
-    
+
