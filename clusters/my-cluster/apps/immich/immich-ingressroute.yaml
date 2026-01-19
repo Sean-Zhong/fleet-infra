@@ -14,4 +14,5 @@ spec:
       services:
         - name: immich-server
           port: 2283
-  tls: immich-tls
+  tls:
+    secretName: immich-tls
