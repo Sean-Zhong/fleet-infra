@@ -8,7 +8,7 @@ spec:
   chart:
     spec:
       chart: immich
-      version: "0.10.x"
+      version: "0.10.3"
       sourceRef:
         kind: HelmRepository
         name: immich
@@ -19,32 +19,26 @@ spec:
     - name: immich-redis
       namespace: immich
   values:
-    # 1. Real Image Tag
     image:
       tag: v2.0.0
 
-    # 2. External DB (No 'postgresql' block!)
-    externalDatabase:
-      enabled: true
-      host: "database"
-      user: "immich"
-      password: "immich"
-      database: "immich"
-      port: 5432
-
-    # 3. Global Env (The Fix)
-    env:
-      DB_URL: "postgresql://immich:immich@database:5432/immich"
-      REDIS_URL: "ioredis://immich-valkey:6379"
-      DB_HOSTNAME: "database"
-      DB_USERNAME: "immich"
-      DB_PASSWORD: "immich"
-      DB_DATABASE_NAME: "immich"
-      REDIS_HOSTNAME: "immich-valkey"
+    controllers:
+      main:
+        containers:
+          main:
+            env:
+              DB_URL: "postgresql://immich:immich@database:5432/immich"
+              REDIS_URL: "ioredis://immich-valkey:6379"
+              
+              DB_HOSTNAME: "database"
+              DB_USERNAME: "immich"
+              DB_PASSWORD: "immich"
+              DB_DATABASE_NAME: "immich"
+              REDIS_HOSTNAME: "immich-valkey"
 
     valkey:
       enabled: false
-
+      
     immich:
       persistence:
         library:
