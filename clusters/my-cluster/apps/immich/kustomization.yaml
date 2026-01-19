@@ -6,5 +6,6 @@ resources:
   - immich-db.yaml
   - immich-redis.yaml
   - immich-aliases.yaml
+  - immich-ingressroute.yaml
   - immich-repo.yaml
   - immich-helmrelease.yaml
