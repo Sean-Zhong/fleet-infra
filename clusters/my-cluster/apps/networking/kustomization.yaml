@@ -3,7 +3,9 @@ kind: Kustomization
 resources:
   - ./install.yaml
   - namespace.yaml
+  - cloudflared-secret.yaml
   - traefik-repo.yaml
   - traefik-dashboard-secret.yaml
   - middleware.yaml
   - traefik-helmrelease.yaml
+  - cloudflared.yaml
