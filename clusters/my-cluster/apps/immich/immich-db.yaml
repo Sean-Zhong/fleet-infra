@@ -5,22 +5,19 @@ metadata:
   namespace: immich
 spec:
   instances: 1
-  imageName: ghcr.io/tensorchord/cloudnative-pgvecto.rs:16-v0.3.0
-  
   storage:
-    size: 20Gi
-    storageClass: longhorn
+    size: 10Gi
+
+  imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16.9-0.4.3
 
   postgresql:
     shared_preload_libraries:
-      - "vectors.so"
-    
-    parameters:
-      search_path: '"$user", public, vectors'
+      - "vchord.so"
 
   bootstrap:
     initdb:
-      database: immich
-      owner: immich
-      postInitSQL:
-        - CREATE EXTENSION IF NOT EXISTS "vectors";
+      postInitApplicationSQL:
+        - CREATE EXTENSION IF NOT EXISTS vectors CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+        - CREATE EXTENSION IF NOT EXISTS "cube";
+        - CREATE EXTENSION IF NOT EXISTS "earthdistance";
