@@ -1,8 +1,19 @@
 name: Renovate
+
 on:
-  schedule:
-    - cron: '0 */4 * * *'
   workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "Log Level"
+        required: false
+        default: "debug"
+      printConfig:
+        description: "Log Imported Config"
+        required: false
+        default: "true" 
+  
+  schedule:
+    - cron: '0 * * * *'
 
 jobs:
   renovate:
@@ -15,4 +26,8 @@ jobs:
         uses: renovatebot/github-action@v40.1.6
         with:
           configurationFile: .github/renovate.json
-          token: ${{ secrets.RENOVATE_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          RENOVATE_REPOSITORIES: "Sean-Zhong/fleet-infra"
+          
+          LOG_LEVEL: ${{ inputs.logLevel || 'debug' }}
