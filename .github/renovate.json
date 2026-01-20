@@ -1,0 +1,49 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":dependencyDashboard"
+  ],
+  "timezone": "Europe/Stockholm",
+  "schedule": ["before 5am on Monday"],
+  "prHourlyLimit": 0,
+  "prConcurrentLimit": 10,
+  
+  /* --- GLOBAL SETTING --- */
+  "automerge": false,
+
+  "flux": {
+    "fileMatch": ["clusters/.+\\.yaml$"]
+  },
+  "kubernetes": {
+    "fileMatch": ["clusters/.+\\.yaml$"]
+  },
+  
+  "packageRules": [
+    /* --- FLUX SYSTEM --- */
+    /* Still grouping them, but NO automerge */
+    {
+      "matchPackagePatterns": ["fluxcd"],
+      "groupName": "flux system"
+    },
+
+    /* --- APP GROUPING: MONITORING --- */
+    {
+      "matchPackagePatterns": ["prometheus", "grafana", "unpoller", "kube-prometheus-stack"],
+      "groupName": "monitoring stack"
+    },
+
+    /* --- APP SPECIFIC: IMMICH --- */
+    {
+      "matchPackageNames": ["immich", "immich-charts/immich"],
+      "groupName": "immich",
+      "separateMajorMinor": true
+    },
+
+    /* --- APP SPECIFIC: LONGHORN --- */
+    {
+      "matchPackageNames": ["longhorn", "longhorn/longhorn"],
+      "groupName": "longhorn"
+    }
+  ]
+}
