@@ -8,41 +8,46 @@
   "schedule": [],
   "prHourlyLimit": 0,
   "prConcurrentLimit": 10,
-  
-  /* --- GLOBAL SETTING --- */
   "automerge": false,
-
   "flux": {
-    "fileMatch": ["clusters/.+\\.yaml$"]
+    "managerFilePatterns": [
+      "/clusters/.+\\.yaml$/"
+    ]
   },
   "kubernetes": {
-    "fileMatch": ["clusters/.+\\.yaml$"]
+    "managerFilePatterns": [
+      "/clusters/.+\\.yaml$/"
+    ]
   },
-  
   "packageRules": [
-    /* --- FLUX SYSTEM --- */
-    /* Still grouping them, but NO automerge */
     {
-      "matchPackagePatterns": ["fluxcd"],
-      "groupName": "flux system"
+      "groupName": "flux system",
+      "matchPackageNames": [
+        "/fluxcd/"
+      ]
     },
-
-    /* --- APP GROUPING: MONITORING --- */
     {
-      "matchPackagePatterns": ["prometheus", "grafana", "unpoller", "kube-prometheus-stack"],
-      "groupName": "monitoring stack"
+      "groupName": "monitoring stack",
+      "matchPackageNames": [
+        "/prometheus/",
+        "/grafana/",
+        "/unpoller/",
+        "/kube-prometheus-stack/"
+      ]
     },
-
-    /* --- APP SPECIFIC: IMMICH --- */
     {
-      "matchPackageNames": ["immich", "immich-charts/immich"],
+      "matchPackageNames": [
+        "immich",
+        "immich-charts/immich"
+      ],
       "groupName": "immich",
       "separateMajorMinor": true
     },
-
-    /* --- APP SPECIFIC: LONGHORN --- */
     {
-      "matchPackageNames": ["longhorn", "longhorn/longhorn"],
+      "matchPackageNames": [
+        "longhorn",
+        "longhorn/longhorn"
+      ],
       "groupName": "longhorn"
     }
   ]
