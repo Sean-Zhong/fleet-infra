@@ -10,3 +10,4 @@ resources:
   - immich-ingressroute.yaml
   - immich-repo.yaml
   - immich-helmrelease.yaml
+  - bitnami-repo.yaml
