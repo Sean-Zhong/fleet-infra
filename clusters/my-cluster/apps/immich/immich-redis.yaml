@@ -14,14 +14,8 @@ spec:
         name: bitnami
         namespace: flux-system
   values:
-    image:
-      registry: public.ecr.aws
-      repository: bitnami/redis
-      tag: "8.6.3"
-
     auth:
       enabled: false
-    
     architecture: standalone
     master:
       persistence:
