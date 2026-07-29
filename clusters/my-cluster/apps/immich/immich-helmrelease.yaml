@@ -42,5 +42,4 @@ spec:
     immich:
       persistence:
         library:
-          enabled: true
           existingClaim: immich-library-pvc
