@@ -21,7 +21,7 @@ spec:
         env:
         - name: MEMOS_PORT
           value: "5230"
-        volumeMount:
+        volumeMounts:
         - name: memos-data
           mountPath: /var/opt/memos
       volumes:
