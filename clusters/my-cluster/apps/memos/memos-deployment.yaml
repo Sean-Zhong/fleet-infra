@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: memos
-        image: ghcr.io/usememos/memos:0.24.2
+        image: ghcr.io/usememos/memos:0.31.0
         ports:
         - containerPort: 5230
         env:
